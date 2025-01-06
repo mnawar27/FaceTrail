@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capture Face</title>
+</head>
+<body>
+    <h1>Capture Face for Registration</h1>
+    <video id="video" width="640" height="480" autoplay></video>
+    <button id="captureButton">Capture</button>
+    <form id="faceForm" action="/add_user" method="POST">
+        <input type="hidden" name="image" id="imageData">
+        <button type="submit">Register Face</button>
+    </form>
+
+    <script>
+        // Get video stream from webcam
+        const video = document.getElementById('video');
+        const captureButton = document.getElementById('captureButton');
+        const imageDataInput = document.getElementById('imageData');
+        
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(function (stream) {
+                video.srcObject = stream;
+            })
+            .catch(function (error) {
+                console.log("Error accessing the camera:", error);
+            });
+
+        captureButton.addEventListener('click', function () {
+            const canvas = document.createElement('canvas');
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            const context = canvas.getContext('2d');
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+            
+            // Get the image data as a base64-encoded PNG image
+            const imageData = canvas.toDataURL('image/png');
+            imageDataInput.value = imageData;  // Store the image data in the hidden input field
+        });
+    </script>
+</body>
+</html>
