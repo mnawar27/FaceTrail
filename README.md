@@ -1,5 +1,5 @@
-![UI Mock](/Users/mnawar/Desktop/passion/FaceTrail/doc/UIMock.png)
-![Registration page](/Users/mnawar/Desktop/passion/FaceTrail/doc/Registration.png)
+![UI Mock](doc/UIMock.png)
+![Registration page](doc/Registration.png)
 
 # FaceTrail
 # Face Attendance + Face Recognition
